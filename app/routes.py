@@ -64,7 +64,7 @@ def register():
         return redirect(url_for("index"))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
+        user = User(username=form.username.data.lower(), email=form.email.data.lower())
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -136,7 +136,7 @@ def user(username):
 def edit_profile():
     form = EditProfileForm(current_user.username)
     if form.validate_on_submit():
-        current_user.username = form.username.data
+        current_user.username = form.username.data.lower()
         current_user.about_me = form.about_me.data
         db.session.commit()
         flash("Your changes have been saved.")

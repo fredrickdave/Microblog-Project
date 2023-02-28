@@ -20,12 +20,12 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField("Register")
 
     def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()
+        user = User.query.filter_by(username=username.data.lower()).first()
         if user is not None:
             raise ValidationError("Please use a different username.")
 
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
+        user = User.query.filter_by(email=email.data.lower()).first()
         if user is not None:
             raise ValidationError("Please use a different email address.")
 
@@ -40,7 +40,7 @@ class EditProfileForm(FlaskForm):
         self.original_username = original_username
 
     def validate_username(self, username):
-        if username.data != self.original_username:
-            user = User.query.filter_by(username=self.username.data).first()
+        if username.data.lower() != self.original_username:
+            user = User.query.filter_by(username=self.username.data.lower()).first()
             if user is not None:
                 raise ValidationError("Please use a different username.")
