@@ -59,6 +59,7 @@ class User(db.Model, UserMixin):
         followed = Post.query.join(followers, (followers.c.followed_id == Post.user_id)).filter(
             followers.c.follower_id == self.id
         )
+        # Add the current user to its own followed user, so user's own posts will be included in followed posts.
         own = Post.query.filter_by(user_id=self.id)
         return followed.union(own).order_by(Post.timestamp.desc())
 

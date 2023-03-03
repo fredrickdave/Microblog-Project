@@ -16,7 +16,6 @@ def before_request():
         # This also avoids database lock error due to multiple database commits when static assets are loaded
         # which are independent requests.
         time_difference = (datetime.utcnow() - current_user.last_seen).total_seconds()
-        print("time_difference:", time_difference)
         if time_difference > 10:
             print("Time adjusted!")
             current_user.last_seen = datetime.utcnow()
@@ -84,7 +83,6 @@ def logout():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    # print(user)
     posts = [
         {
             "author": user,
