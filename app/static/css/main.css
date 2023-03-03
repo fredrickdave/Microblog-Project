@@ -124,6 +124,7 @@ section {
   border-color: var(--color-black);
 }
 
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -1328,4 +1329,16 @@ section {
 
 .register {
   padding-top: 10px;
+}
+
+.btn.btn-secondary {
+  background-color: grey;
+  color: var(--color-white);
+  border-color: var(--color-grey);
+}
+
+.btn.btn-secondary:hover {
+  background-color: skyblue;
+  color: var(--color-white);
+  border-color: var(--color-grey);
 }
