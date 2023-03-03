@@ -17,7 +17,6 @@ def before_request():
         # which are independent requests.
         time_difference = (datetime.utcnow() - current_user.last_seen).total_seconds()
         if time_difference > 10:
-            print("Time adjusted!")
             current_user.last_seen = datetime.utcnow()
             db.session.commit()
 
@@ -42,7 +41,7 @@ def login():
         return redirect(url_for("index"))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(username=form.username.data.lower()).first()
         if user is None or not user.check_password(form.password.data):
             flash("Invalid username or password. Please try again.")
             return redirect(url_for("login"))
