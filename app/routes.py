@@ -29,6 +29,13 @@ def index():
     return render_template("index.html", title="Home", posts=posts)
 
 
+@app.route("/explore")
+@login_required
+def explore():
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    return render_template("index.html", title="Explore", posts=posts)
+
+
 @app.route("/single-post")
 def get_post():
     return render_template("single-post.html", title="Single Post")
