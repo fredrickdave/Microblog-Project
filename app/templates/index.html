@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<div class="single-post" data-aos="fade-up">
+<div class="container" data-aos="fade-up">
   <h1 class="mb-5">Hi {{ current_user.username }}</h1>
 </div>
 
@@ -98,10 +97,11 @@
 
 
   <!-- New Post -->
-  <ul class="aside-tags list-unstyled">
-    <li><a href="{{ url_for('new_post') }}">New Post</a></li>
-  </ul>
-
+  <div class="container mt-5" data-aos="fade-up">
+    <ul class="aside-tags list-unstyled">
+      <li><a href="{{ url_for('new_post') }}">New Post</a></li>
+    </ul>
+  </div>
 
 </section>
 <!-- End Blog Preview Content -->
