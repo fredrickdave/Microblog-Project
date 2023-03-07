@@ -3,8 +3,9 @@ from datetime import datetime
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.urls import url_parse
+
 from app import app, db
-from app.forms import EditProfileForm, EmptyForm, LoginForm, RegistrationForm, CreatePostForm
+from app.forms import CreatePostForm, EditProfileForm, EmptyForm, LoginForm, RegistrationForm
 from app.models import Post, User
 
 
@@ -24,7 +25,7 @@ def before_request():
 @app.route("/index")
 @login_required
 def index():
-    posts = Post.query.all()
+    posts = current_user.followed_posts().all()
     return render_template("index.html", title="Home", posts=posts)
 
 
@@ -184,7 +185,13 @@ def unfollow(username):
         return redirect(url_for("index"))
 
 
-@app.route("/new_post")
+@app.route("/new_post", methods=["GET", "POST"])
 def new_post():
     form = CreatePostForm()
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, subtitle=form.subtitle.data, body=form.body.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash("Your post is now live!")
+        return redirect(url_for("index"))
     return render_template("make_post.html", form=form)
