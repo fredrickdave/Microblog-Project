@@ -16,7 +16,7 @@
                 <div class="row">
                   <div class="col-lg-6 mb-3">
                     {{ form.username.label }}
-                    {{ form.username(class_="form-control",size=32) }}
+                    {{ form.username(class_="form-control") }}
                     {% for error in form.username.errors %}
                       <span style="color: red;">{{ error }}</span>
                     {% endfor %}
@@ -25,7 +25,7 @@
                 <div class="row">
                   <div class="col-lg-6 mb-3">
                     {{ form.password.label }}
-                    {{ form.password(class_="form-control", size=32) }}
+                    {{ form.password(class_="form-control") }}
                     {% for error in form.password.errors %}
                       <span style="color: red;">{{ error }}</span><br>
                     {% endfor %}                    

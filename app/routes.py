@@ -3,9 +3,8 @@ from datetime import datetime
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.urls import url_parse
-
 from app import app, db
-from app.forms import EditProfileForm, EmptyForm, LoginForm, RegistrationForm
+from app.forms import EditProfileForm, EmptyForm, LoginForm, RegistrationForm, CreatePostForm
 from app.models import Post, User
 
 
@@ -183,3 +182,9 @@ def unfollow(username):
         return redirect(url_for("user", username=username))
     else:
         return redirect(url_for("index"))
+
+
+@app.route("/new_post")
+def new_post():
+    form = CreatePostForm()
+    return render_template("make_post.html", form=form)

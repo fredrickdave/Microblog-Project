@@ -3,6 +3,7 @@ import os
 from logging.handlers import RotatingFileHandler
 
 from flask import Flask
+from flask_ckeditor import CKEditor
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -15,6 +16,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
+ckeditor = CKEditor(app)
 
 from app import errors, models, routes
 
