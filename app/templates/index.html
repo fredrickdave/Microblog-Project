@@ -94,7 +94,14 @@
   </div>
   {% endfor %}
 
-
+  <div class="container mt-5" data-aos="fade-up">
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Newer posts</a>
+    {% endif %}
+    {% if next_url %}
+    <a href="{{ next_url }}">Older posts</a>
+    {% endif %}
+  </div>
 
   <!-- New Post -->
   <div class="container mt-5" data-aos="fade-up">
