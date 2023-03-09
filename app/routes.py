@@ -7,7 +7,7 @@ from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import CreatePostForm, EditProfileForm, EmptyForm, LoginForm, RegistrationForm, ResetPasswordRequestForm
 from app.models import Post, User
-
+from app.email import send_email
 
 @app.before_request
 def before_request():
@@ -186,4 +186,5 @@ def reset_password_request():
     #         send_password_reset_email(user)
     #     flash("Check your email for the instructions to reset your password")
     #     return redirect(url_for("login"))
+    send_email(current_user)
     return render_template("reset_password_request.html", title="Reset Password", form=form)
