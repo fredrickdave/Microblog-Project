@@ -1,4 +1,6 @@
-<div class="post-meta"><span class="date">Posted by: <a href="{{ url_for('user', username=post.author.username) }}">{{ post.author.username }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.timestamp }}</span></div>
+<div class="post-meta"><span class="date">Posted by: <a href="{{ url_for('user', username=post.author.username) }}">{{
+            post.author.username }}</a></span> <span class="mx-1">&bullet;</span> <span>{{
+        moment(post.timestamp).fromNow() }}</span></div>
 <h1 class="mb-3 post-title">{{ post.title }}</h1>
 <h2 class="post-subtitle">{{ post.subtitle }}</h2>
 <p class="post-body">{{ post.body|safe }}</p>
