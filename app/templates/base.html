@@ -59,11 +59,11 @@
                     <li><a href="{{ url_for('index') }}">Home</a></li>
                     <li><a href="{{ url_for('explore') }}">Explore</a></li>
                     {% if current_user.is_anonymous %}
-                    <li class="dropdown"><a href="{{ url_for('login') }}"><span>Login</span> <i
+                    <li class="dropdown"><a href="{{ url_for('auth.login') }}"><span>Login</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="{{ url_for('login') }}">Login</a></li>
-                            <li><a href="{{ url_for('register') }}">Register</a></li>
+                            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
                         </ul>
                     </li>
                     {% else %}
@@ -71,7 +71,7 @@
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
                             <li><a href="{{ url_for('user', username=current_user.username) }}">Profile</a></li>
-                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                            <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                         </ul>
                     </li>
                     {% endif %}
