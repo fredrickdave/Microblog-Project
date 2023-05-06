@@ -6,8 +6,8 @@ from flask import Flask
 from flask_ckeditor import CKEditor
 from flask_login import LoginManager
 from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
 from flask_moment import Moment
+from flask_sqlalchemy import SQLAlchemy
 
 from config import Config
 
@@ -20,7 +20,12 @@ login_manager.login_view = "login"
 ckeditor = CKEditor(app)
 moment = Moment(app)
 
-from app import errors, models, routes
+# Register Blueprints
+from app.errors import bp as errors_bp
+
+app.register_blueprint(errors_bp)
+
+from app import models, routes
 
 # Setup log files
 if not app.debug:
