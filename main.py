@@ -1,6 +1,7 @@
 from app import app, db
-from app.models import Post, User
 from app.auth import email
+from app.models import Post, User
+
 
 @app.shell_context_processor
 def make_shell_context():

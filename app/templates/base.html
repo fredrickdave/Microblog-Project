@@ -48,7 +48,7 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-            <a href="{{ url_for('index') }}" class="logo d-flex align-items-center">
+            <a href="{{ url_for('main.index') }}" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="static/img/logo.png" alt=""> -->
                 <h1>Microblog</h1>
@@ -56,8 +56,8 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ url_for('explore') }}">Explore</a></li>
+                    <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                    <li><a href="{{ url_for('main.explore') }}">Explore</a></li>
                     {% if current_user.is_anonymous %}
                     <li class="dropdown"><a href="{{ url_for('auth.login') }}"><span>Login</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -67,10 +67,10 @@
                         </ul>
                     </li>
                     {% else %}
-                    <li class="dropdown"><a href="{{ url_for('user', username=current_user.username) }}"><span>Profile</span> <i
+                    <li class="dropdown"><a href="{{ url_for('main.user', username=current_user.username) }}"><span>Profile</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="{{ url_for('user', username=current_user.username) }}">Profile</a></li>
+                            <li><a href="{{ url_for('main.user', username=current_user.username) }}">Profile</a></li>
                             <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                         </ul>
                     </li>
