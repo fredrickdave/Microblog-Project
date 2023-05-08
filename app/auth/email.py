@@ -1,14 +1,12 @@
 import sendgrid
-from flask import render_template
+from flask import current_app, render_template
 from sendgrid.helpers.mail import Content, Email, Mail, To
-
-from app import app
 
 
 def send_password_reset_email(user):
     token = user.get_reset_password_token()
-    sg = sendgrid.SendGridAPIClient(api_key=app.config["SENDGRID_API_KEY"])
-    from_email = Email(app.config["ADMINS"])
+    sg = sendgrid.SendGridAPIClient(api_key=current_app.config["SENDGRID_API_KEY"])
+    from_email = Email(current_app.config["ADMINS"])
     to_email = To("fredrick_dave@outlook.com")
     subject = "[Microblog] Reset Your Password"
     content = Content("text/html", render_template("email/reset_password.html", user=user, token=token))

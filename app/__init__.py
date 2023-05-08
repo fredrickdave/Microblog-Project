@@ -11,38 +11,51 @@ from flask_sqlalchemy import SQLAlchemy
 
 from config import Config
 
-app = Flask(__name__)
-app.config.from_object(Config)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-login_manager = LoginManager(app)
+db = SQLAlchemy()
+migrate = Migrate()
+login_manager = LoginManager()
 login_manager.login_view = "auth.login"
-ckeditor = CKEditor(app)
-moment = Moment(app)
+ckeditor = CKEditor()
+moment = Moment()
 
-# Register Blueprints
-from app.errors import bp as errors_bp
 
-app.register_blueprint(errors_bp)
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    db.init_app(app)
+    migrate.init_app(app, db)
+    login_manager.init_app(app)
+    ckeditor.init_app(app)
+    moment.init_app(app)
 
-from app.auth import bp as auth_bp
+    # Register Blueprints
+    from app.errors import bp as errors_bp
 
-app.register_blueprint(auth_bp, url_prefix="/auth")
+    app.register_blueprint(errors_bp)
 
-from app.main import bp as main_bp
+    from app.auth import bp as auth_bp
 
-app.register_blueprint(main_bp)
+    app.register_blueprint(auth_bp, url_prefix="/auth")
+
+    from app.main import bp as main_bp
+
+    app.register_blueprint(main_bp)
+
+    # Setup log files
+    if not app.debug:
+        if not os.path.exists("logs"):
+            os.mkdir("logs")
+        file_handler = RotatingFileHandler("logs/flask-blog.log", maxBytes=102400, backupCount=10)
+        file_handler.setFormatter(
+            logging.Formatter("%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]")
+        )
+        file_handler.setLevel(logging.INFO)
+        app.logger.addHandler(file_handler)
+
+        app.logger.setLevel(logging.INFO)
+        app.logger.info("Flask-Blog startup")
+
+    return app
+
 
 from app import models
-
-# Setup log files
-if not app.debug:
-    if not os.path.exists("logs"):
-        os.mkdir("logs")
-    file_handler = RotatingFileHandler("logs/flask-blog.log", maxBytes=102400, backupCount=10)
-    file_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]"))
-    file_handler.setLevel(logging.INFO)
-    app.logger.addHandler(file_handler)
-
-    app.logger.setLevel(logging.INFO)
-    app.logger.info("Flask-Blog startup")

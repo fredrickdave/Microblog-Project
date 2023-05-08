@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from flask import flash, redirect, render_template, request, url_for
+from flask import flash, redirect, render_template, request, url_for, current_app
 from flask_login import current_user, login_required
 
-from app import app, db
+from app import db
 from app.main.forms import CreatePostForm, EditProfileForm, EmptyForm
 from app.models import Post, User
 from app.main import bp
@@ -25,7 +25,7 @@ def before_request():
 @login_required
 def index():
     page = request.args.get("page", 1, type=int)
-    posts = current_user.followed_posts().paginate(page=page, per_page=app.config["POSTS_PER_PAGE"], error_out=False)
+    posts = current_user.followed_posts().paginate(page=page, per_page=current_app.config["POSTS_PER_PAGE"], error_out=False)
     return render_template("index.html", title="Home", posts=posts, route="main.index")
 
 
@@ -34,7 +34,7 @@ def index():
 def explore():
     page = request.args.get("page", 1, type=int)
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
-        page=page, per_page=app.config["POSTS_PER_PAGE"], error_out=False
+        page=page, per_page=current_app.config["POSTS_PER_PAGE"], error_out=False
     )
     return render_template("index.html", title="Explore", posts=posts, route="main.explore")
 
@@ -50,7 +50,7 @@ def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     page = request.args.get("page", 1, type=int)
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(
-        page=page, per_page=app.config["POSTS_PER_PAGE"], error_out=False
+        page=page, per_page=current_app.config["POSTS_PER_PAGE"], error_out=False
     )
     form = EmptyForm()
     return render_template("user.html", user=user, posts=posts, form=form, route="main.user")
