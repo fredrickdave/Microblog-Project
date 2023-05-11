@@ -42,7 +42,7 @@ def create_app(config_class=Config):
     app.register_blueprint(main_bp)
 
     # Setup log files
-    if not app.debug:
+    if not app.debug and not app.testing:
         if not os.path.exists("logs"):
             os.mkdir("logs")
         file_handler = RotatingFileHandler("logs/flask-blog.log", maxBytes=102400, backupCount=10)
