@@ -2,6 +2,7 @@ import logging
 import os
 from logging.handlers import RotatingFileHandler
 
+from elasticsearch import Elasticsearch
 from flask import Flask
 from flask_ckeditor import CKEditor
 from flask_login import LoginManager
@@ -27,6 +28,10 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     ckeditor.init_app(app)
     moment.init_app(app)
+
+    # Add elasticsearch attribut to app instance to store elasticsearch URL if it exists.
+    # Otherwise, set to None to disable elasticsearch
+    app.elasticsearch = Elasticsearch([app.config["ELASTICSEARCH_URL"]]) if app.config["ELASTICSEARCH_URL"] else None
 
     # Register Blueprints
     from app.errors import bp as errors_bp

@@ -1,8 +1,9 @@
 import os
+
 from dotenv import load_dotenv
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-load_dotenv(os.path.join(basedir, '.env'))
+load_dotenv(os.path.join(basedir, ".env"))
 
 
 class Config(object):
@@ -13,3 +14,4 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ADMINS = ["microblog.service@outlook.com"]
     POSTS_PER_PAGE = 1
+    ELASTICSEARCH_URL = os.environ.get("ELASTICSEARCH_URL")
