@@ -53,7 +53,7 @@ def user(username):
         page=page, per_page=current_app.config["POSTS_PER_PAGE"], error_out=False
     )
     form = EmptyForm()
-    return render_template("user.html", user=user, posts=posts, form=form, route="main.user")
+    return render_template("user.html", title="Profile", user=user, posts=posts, form=form, route="main.user")
 
 
 @bp.route("/edit_profile", methods=["GET", "POST"])
