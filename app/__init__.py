@@ -29,9 +29,17 @@ def create_app(config_class=Config):
     ckeditor.init_app(app)
     moment.init_app(app)
 
-    # Add elasticsearch attribut to app instance to store elasticsearch URL if it exists.
+    # Add elasticsearch attribute to app instance to store elasticsearch client if URL exists.
     # Otherwise, set to None to disable elasticsearch
-    app.elasticsearch = Elasticsearch([app.config["ELASTICSEARCH_URL"]]) if app.config["ELASTICSEARCH_URL"] else None
+    app.elasticsearch = (
+        Elasticsearch(
+            hosts=[app.config["ELASTICSEARCH_URL"]],
+            ca_certs=app.config["ELASTICSEARCH_CERT"],
+            basic_auth=(app.config["ELASTICK_USERNAME"], app.config["ELASTICK_PW"]),
+        )
+        if app.config["ELASTICSEARCH_URL"]
+        else None
+    )
 
     # Register Blueprints
     from app.errors import bp as errors_bp
