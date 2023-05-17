@@ -82,6 +82,7 @@ class User(db.Model, UserMixin):
 
 class Post(db.Model):
     __tablename__ = "post"
+    __searchable__ = ["title", "subtitle", "body"]
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250), nullable=False)
     subtitle = db.Column(db.String(250), nullable=False)
