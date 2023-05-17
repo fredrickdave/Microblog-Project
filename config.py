@@ -15,3 +15,6 @@ class Config(object):
     ADMINS = ["microblog.service@outlook.com"]
     POSTS_PER_PAGE = 1
     ELASTICSEARCH_URL = os.environ.get("ELASTICSEARCH_URL")
+    ELASTICK_USERNAME = os.environ.get("ELASTICK_USERNAME")
+    ELASTICK_PW = os.environ.get("ELASTICK_PW")
+    ELASTICSEARCH_CERT = os.environ.get("ELASTICSEARCH_CERT")
