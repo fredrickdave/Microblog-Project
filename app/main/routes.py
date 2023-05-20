@@ -1,12 +1,13 @@
 from datetime import datetime
 
-from flask import flash, redirect, render_template, request, url_for, current_app
+from flask import current_app, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 
 from app import db
+from app.main import bp
 from app.main.forms import CreatePostForm, EditProfileForm, EmptyForm
 from app.models import Post, User
-from app.main import bp
+
 
 @bp.before_app_request
 def before_request():
@@ -25,7 +26,9 @@ def before_request():
 @login_required
 def index():
     page = request.args.get("page", 1, type=int)
-    posts = current_user.followed_posts().paginate(page=page, per_page=current_app.config["POSTS_PER_PAGE"], error_out=False)
+    posts = current_user.followed_posts().paginate(
+        page=page, per_page=current_app.config["POSTS_PER_PAGE"], error_out=False
+    )
     return render_template("index.html", title="Home", posts=posts, route="main.index")
 
 
@@ -65,7 +68,7 @@ def edit_profile():
         current_user.about_me = form.about_me.data
         db.session.commit()
         flash("Your changes have been saved.")
-        return redirect(url_for("main.edit_profile"))
+        return redirect(url_for("main.user", username=current_user.username))
     elif request.method == "GET":
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
