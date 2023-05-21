@@ -13,7 +13,7 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "sqlite:///" + os.path.join(basedir, "app.db"))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ADMINS = ["microblog.service@outlook.com"]
-    POSTS_PER_PAGE = 1
+    POSTS_PER_PAGE = 10
     ELASTICSEARCH_URL = os.environ.get("ELASTICSEARCH_URL")
     ELASTICK_USERNAME = os.environ.get("ELASTICK_USERNAME")
     ELASTICK_PW = os.environ.get("ELASTICK_PW")
