@@ -46,6 +46,10 @@
         </ul>
       </nav>
     </div>
+  {% else %}
+    <div class="container" data-aos="fade-up">
+      <h2>No result found for "{{ g.search_form.q.data }}"</h2>
+    </div>
   {% endif %}
 </section>
 
