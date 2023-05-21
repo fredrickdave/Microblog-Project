@@ -29,6 +29,10 @@ a:hover {
   text-decoration: none;
 }
 
+a.disabled {
+  display: none;
+}
+
 h1,
 h2,
 h3,
