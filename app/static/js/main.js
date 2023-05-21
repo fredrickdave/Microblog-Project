@@ -123,10 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
     searchWrap.classList.add("active");
   });
 
-  searchClose.addEventListener("click", (e) => {
-    e.preventDefault();
-    searchWrap.classList.remove("active");
-  });
+  // searchClose.addEventListener("click", (e) => {
+  //   e.preventDefault();
+  //   searchWrap.classList.remove("active");
+  // });
 
   /**
    * Initiate glightbox
