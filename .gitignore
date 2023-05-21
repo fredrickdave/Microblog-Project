@@ -3,6 +3,7 @@
 
 ### Others ###
 app.db
+add.py
 
 ### Flask ###
 instance/*
