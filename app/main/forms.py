@@ -1,3 +1,4 @@
+from flask import request
 from flask_ckeditor import CKEditorField
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField
@@ -31,3 +32,14 @@ class CreatePostForm(FlaskForm):
     subtitle = StringField("Subtitle", validators=[DataRequired()])
     body = CKEditorField("Blog Content", validators=[DataRequired()])
     submit = SubmitField("Submit Post")
+
+
+class SearchForm(FlaskForm):
+    q = StringField(("Search"), validators=[DataRequired()])
+
+    def __init__(self, *args, **kwargs):
+        if "formdata" not in kwargs:
+            kwargs["formdata"] = request.args
+        if "meta" not in kwargs:
+            kwargs["meta"] = {"csrf": False}
+        super(SearchForm, self).__init__(*args, **kwargs)
