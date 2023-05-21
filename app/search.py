@@ -5,12 +5,10 @@ def add_to_index(index, model):
     if not current_app.elasticsearch:
         return
     payload = {}
-    print("Test")
     for field in model.__searchable__:
-        print("Field Body", field)
         payload[field] = getattr(model, field)
     current_app.elasticsearch.index(index=index, id=model.id, document=payload)
-    print("Payload", payload)
+    # print("Payload", payload)
 
 
 def remove_from_index(index, model):
