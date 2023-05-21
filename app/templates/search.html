@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container" data-aos="fade-up">
-  <h1 class="mb-5">Search Results</h1>
+  <h1 class="mb-5">Search Results: {{ total }} items</h1>
 </div>
 
 
@@ -28,26 +28,28 @@
 
   <!-- ======= Page Navigation Section ======= -->
   <div class="container mt-5" data-aos="fade-up">
-    <nav aria-label="...">
-      <ul class="pager">
-        <li class="previous{% if not prev_url %} disabled{% endif %}">
-          <a href="{{ prev_url or '#' }}">
-            <span aria-hidden="true">&larr;</span>
-            {{ ('Previous results') }}
-          </a>
-        </li>
-        <li class="next{% if not next_url %} disabled{% endif %}">
-          <a href="{{ next_url or '#' }}">
-            {{ ('Next results') }}
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <li class="page-item {% if not posts.has_prev %}disabled{% endif %}"><a class="page-link"
+            href="{{ url_for(route, q=g.search_form.q.data, page=posts.prev_num) }}">Previous</a></li>
+        {% for page in posts.iter_pages(left_edge=2, left_current=2, right_edge=2, right_current=4) %}
+        {% if page %}
+        <li class="page-item {% if posts.page==page %}disabled{% endif %}"><a class="page-link"
+            href="{{ url_for(route, q=g.search_form.q.data, page=page) }}">{{ page }}</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+        {% endif %}
+        {% endfor %}
+        <li class="page-item {% if not posts.has_next %}disabled{% endif %}"><a class="page-link"
+            href="{{ url_for(route, q=g.search_form.q.data, page=posts.next_num) }}">Next</a></li>
       </ul>
     </nav>
   </div>
+
 </section>
 
 <!-- End Blog Preview Content -->
+
 
 
 {% endblock %}
