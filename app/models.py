@@ -20,7 +20,12 @@ class SearchableMixin:
         when = {}
         for i in range(len(ids)):
             when[ids[i]] = i
-        return cls.query.filter(cls.id.in_(ids)).order_by(db.case(when, value=cls.id)), total
+        return (
+            cls.query.filter(cls.id.in_(ids))
+            .order_by(db.case(when, value=cls.id))
+            .paginate(page=page, per_page=current_app.config["POSTS_PER_PAGE"], error_out=False),
+            total,
+        )
 
     @classmethod
     def before_commit(cls, session):
