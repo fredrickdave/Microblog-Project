@@ -21,7 +21,6 @@ def login():
             flash("Invalid username or password. Please try again.")
             return redirect(url_for("auth.login"))
         login_user(user, remember=form.remember_me.data)
-        flash(f"Login requested for user {form.username.data}, remember_me={form.remember_me.data}")
         next_page = request.args.get("next")
         if not next_page or url_parse(next_page).netloc != "":
             next_page = url_for("main.index")
