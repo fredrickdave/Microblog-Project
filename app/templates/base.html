@@ -114,13 +114,14 @@
         <!-- ======= Flash Message ======= -->
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <section class="single-post-content">
-            <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        </section>
+            <div class="container mt-5" data-aos="fade-up">
+                <ul>
+                    {% for message in messages %}
+                    <li><h3 class="flash-message">{{ message }}</h3></li>
+                    {% endfor %}
+                </ul>
+              </div>
+
         {% endif %}
         {% endwith %}
 

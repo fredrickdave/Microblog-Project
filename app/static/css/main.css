@@ -1353,3 +1353,7 @@ section {
 .page-link:hover {
   color: black;
 }
+
+.flash-message {
+  color: grey;
+}
