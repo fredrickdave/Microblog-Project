@@ -54,7 +54,7 @@
       <ul class="pagination justify-content-center">
         <li class="page-item {% if not posts.has_prev %}disabled{% endif %}"><a class="page-link"
             href="{{ url_for(route, username=user.username, page=posts.prev_num) }}">Previous</a></li>
-        {% for page in posts.iter_pages(left_edge=2, left_current=2, right_edge=2, right_current=4) %}
+        {% for page in posts.iter_pages(left_edge=1, left_current=0, right_edge=1, right_current=2) %}
         {% if page %}
         <li class="page-item {% if posts.page==page %}disabled{% endif %}"><a class="page-link"
             href="{{ url_for(route, username=user.username, page=page) }}">{{ page }}</a></li>

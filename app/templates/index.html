@@ -1,22 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container" data-aos="fade-up">
-  <h1 class="mb-5">Hi {{ current_user.username }}</h1>
-</div>
 
 <!-- ======= Blog Preview Section ======= -->
 <section class="single-post-content">
-  <!-- <div class="container" data-aos="fade-up">
-    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th
-        '22</span></div>
-    <h1 class="mb-5">14 Amazing Poems from Shel Silverstein with Valuable Life Lessons</h1>
-    <p><span class="firstcharacter">L</span>orem ipsum dolor sit, amet consectetur adipisicing elit. Ratione
-      officia sed, suscipit distinctio, numquam omnis quo fuga ipsam quis inventore voluptatum recusandae culpa,
-      unde doloribus saepe labore alias voluptate expedita? Dicta delectus beatae explicabo odio voluptatibus
-      quas, saepe qui aperiam autem obcaecati, illo et! Incidunt voluptas culpa neque repellat sint, accusamus
-      beatae, cumque autem tempore quisquam quam eligendi harum debitis.</p>
-  </div> -->
+
+  <div class="container" data-aos="fade-up">
+    <h1 class="mb-5">Hi {{ current_user.username }}</h1>
+  </div>
 
   {% for post in posts.items %}
   <div class="container mt-5" data-aos="fade-up">
@@ -31,7 +22,7 @@
       <ul class="pagination justify-content-center">
         <li class="page-item {% if not posts.has_prev %}disabled{% endif %}"><a class="page-link"
             href="{{ url_for(route, page=posts.prev_num) }}">Previous</a></li>
-        {% for page in posts.iter_pages(left_edge=2, left_current=2, right_edge=2, right_current=4) %}
+        {% for page in posts.iter_pages(left_edge=1, left_current=0, right_edge=1, right_current=2) %}
         {% if page %}
         <li class="page-item {% if posts.page==page %}disabled{% endif %}"><a class="page-link"
             href="{{ url_for(route, page=page) }}">{{ page }}</a></li>
