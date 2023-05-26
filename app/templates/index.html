@@ -10,15 +10,7 @@
   </div>
 
   {% for post in posts.items %}
-  <div class="container" data-aos="fade-up">
-    <table>
-      <tr valign="top">
-        <td><img src="{{ post.author.avatar(36) }}" class="rounded"></td>
-        <td>{% include '_post.html' %}</td>
-      </tr>
-    </table>
-    <hr>
-  </div>
+    {% include '_post.html' %}
   {% endfor %}
 
   <!-- ======= Page Navigation Section ======= -->
