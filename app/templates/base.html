@@ -147,10 +147,15 @@
                     <div class="col-6 col-lg-4">
                         <h3 class="footer-heading">Navigation</h3>
                         <ul class="footer-links list-unstyled">
-                            <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
-                            <li><a href="index.html"><i class="bi bi-chevron-right"></i> Blog</a></li>
-                            <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
-                            <li><a href="single-post.html"><i class="bi bi-chevron-right"></i> Single Post</a></li>
+                            <li><a href="{{ url_for('main.index') }}"><i class="bi bi-chevron-right"></i> Home</a></li>
+                            <li><a href="{{ url_for('main.explore') }}"><i class="bi bi-chevron-right"></i> Explore</a></li>
+                            {% if current_user.is_anonymous %}
+                                <li><a href="{{ url_for('auth.login') }}"><i class="bi bi-chevron-right"></i> Login</a></li>
+                                <li><a href="{{ url_for('auth.register') }}"><i class="bi bi-chevron-right"></i> Register</a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('main.user', username=current_user.username) }}"><i class="bi bi-chevron-right"></i> Profile</a></li>
+                                <li><a href="{{ url_for('auth.logout') }}"><i class="bi bi-chevron-right"></i> Logout</a></li>
+                            {% endif %} 
                             <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
                             <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
                         </ul>
