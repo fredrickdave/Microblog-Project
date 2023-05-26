@@ -1320,6 +1320,9 @@ section {
   color: var(--color-white);
 }
 
+/*--------------------------------------------------------------
+# Post
+--------------------------------------------------------------*/
 .single-post {
   align-items: center;
   /* border-bottom: 2px solid var(--color-black); */
@@ -1330,10 +1333,20 @@ section {
   font-weight: 100;
 }
 
+.post-td {
+  width: 50px;
+}
+
+/*--------------------------------------------------------------
+# Login page
+--------------------------------------------------------------*/
 .register {
   padding-top: 20px;
 }
 
+/*--------------------------------------------------------------
+# User Page
+--------------------------------------------------------------*/
 .btn.btn-secondary {
   background-color: grey;
   color: var(--color-white);
@@ -1341,7 +1354,7 @@ section {
 }
 
 .btn.btn-secondary:hover {
-  background-color: skyblue;
+  background-color: darkslategray;
   color: var(--color-white);
   border-color: var(--color-grey);
 }
@@ -1354,6 +1367,10 @@ section {
   color: black;
 }
 
+/*--------------------------------------------------------------
+# Flash message
+--------------------------------------------------------------*/
 .flash-message {
   color: grey;
 }
+
