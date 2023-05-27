@@ -125,7 +125,7 @@ def new_post():
         db.session.commit()
         flash("Your post is now live!")
         return redirect(url_for("main.index"))
-    return render_template("make_post.html", form=form)
+    return render_template("make_post.html", form=form, title="New Post")
 
 
 @bp.route("/search")
