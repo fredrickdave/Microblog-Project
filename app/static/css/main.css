@@ -1384,7 +1384,7 @@ section {
 
 }
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
   .float{
     position:sticky;
     bottom:60px;  }
