@@ -128,6 +128,39 @@ def new_post():
     return render_template("make_post.html", form=form, title="New Post")
 
 
+@bp.route("/post/<int:post_id>", methods=["GET", "POST"])
+@login_required
+def show_post(post_id):
+    requested_post = Post.query.get(post_id)
+    return render_template("single_post.html", post=requested_post)
+
+
+@bp.route("/edit_post/<int:post_id>", methods=["GET", "POST"])
+@login_required
+def edit_post(post_id):
+    post = Post.query.get(post_id)
+    print("Author userid:", post.user_id)
+    form = CreatePostForm(title=post.title, subtitle=post.subtitle, body=post.body)
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.subtitle = form.subtitle.data
+        post.body = form.body.data
+        db.session.commit()
+        flash("Your changes have been saved.")
+        return redirect(url_for("main.show_post", post_id=post.id))
+    return render_template("make_post.html", form=form, is_edit=True, title="Edit Post")
+
+
+@bp.route("/delete/<int:post_id>")
+@login_required
+def delete_post(post_id):
+    post_to_delete = Post.query.get(post_id)
+    db.session.delete(post_to_delete)
+    db.session.commit()
+    flash("Post has been deleted.")
+    return redirect(url_for("main.index"))
+
+
 @bp.route("/search")
 @login_required
 def search():
@@ -135,5 +168,4 @@ def search():
         return redirect(url_for("main.explore"))
     page = request.args.get("page", 1, type=int)
     posts, total = Post.search(g.search_form.q.data, page)
-    return render_template(
-        "search.html", title="Search", route="main.search", posts=posts, total=total)
+    return render_template("search.html", title="Search", route="main.search", posts=posts, total=total)
