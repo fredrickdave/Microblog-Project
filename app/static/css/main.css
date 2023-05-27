@@ -1374,3 +1374,26 @@ section {
   color: grey;
 }
 
+/*--------------------------------------------------------------
+# New Post floating button
+--------------------------------------------------------------*/
+.float{
+	position:sticky;
+	bottom:12px;
+	right: 5%;
+
+}
+
+@media (max-width: 650px) {
+  .float{
+    position:sticky;
+    bottom:60px;  }
+  }
+
+.new-post-btn {
+  background-color: white;
+}
+
+.new-post-btn:hover {
+  background-color: #F8F6F4;
+}
