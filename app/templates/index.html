@@ -5,9 +5,15 @@
 <!-- ======= Blog Preview Section ======= -->
 <section class="single-post-content">
 
-  <div class="container" data-aos="fade-up">
-    <h2 class="mb-5">Hi {{ current_user.username }}</h2>
-  </div>
+  {% if route == "main.index" %}
+    <div class="container" data-aos="fade-up">
+      <h2 class="mb-5">Hi {{ current_user.username }}! {% if posts.items %} Here are the posts from users you follow. Enjoy!{% endif %}</h2>
+    </div>
+  {% else %}
+    <div class="container" data-aos="fade-up">
+      <h2 class="mb-5">Hi {{ current_user.username }}! Discover new posts and users to follow here. Enjoy!</h2>
+    </div>
+ {% endif %}
 
   {% if posts.items %}
     {% for post in posts.items %}
