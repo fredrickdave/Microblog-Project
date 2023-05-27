@@ -7,9 +7,11 @@
                 <span class="date">Posted by: <a href="{{ url_for('main.user', username=post.author.username) }}">{{post.author.username }}</a></span> 
                 <span class="mx-1">&bullet;</span> 
                 <span>{{moment(post.timestamp).fromNow() }}</span> <br>
-                <a href="{{ url_for('main.edit_post', post_id=post.id) }}">Edit</a>
-                <span class="ms-1">|</span>
-                <span class="ms-1"><a href="{{ url_for('main.delete_post', post_id = post.id) }}">Delete</a></span>
+                {% if current_user.id == post.user_id %}
+                    <a href="{{ url_for('main.edit_post', post_id=post.id) }}">Edit</a>
+                    <span class="ms-1">|</span>
+                    <span class="ms-1"><a href="{{ url_for('main.delete_post', post_id = post.id) }}">Delete</a></span>
+                {% endif %}
             </div>
         </td>
     </tr>

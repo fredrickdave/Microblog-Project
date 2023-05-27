@@ -135,7 +135,9 @@ def show_post(post_id):
 @login_required
 def edit_post(post_id):
     post = Post.query.get(post_id)
-    print("Author userid:", post.user_id)
+    if current_user.id != post.user_id:
+        flash("Sorry, you don't have permission to edit this post. Please only edit posts you made.")
+        return redirect(url_for("main.index", post_id=post.id))
     form = CreatePostForm(title=post.title, subtitle=post.subtitle, body=post.body)
     if form.validate_on_submit():
         post.title = form.title.data
@@ -150,8 +152,11 @@ def edit_post(post_id):
 @bp.route("/delete/<int:post_id>")
 @login_required
 def delete_post(post_id):
-    post_to_delete = Post.query.get(post_id)
-    db.session.delete(post_to_delete)
+    post = Post.query.get(post_id)
+    if current_user.id != post.user_id:
+        flash("Sorry, you don't have permission to delete this post. Please only edit posts you made.")
+        return redirect(url_for("main.index", post_id=post.id))
+    db.session.delete(post)
     db.session.commit()
     flash("Post has been deleted.")
     return redirect(url_for("main.index"))
