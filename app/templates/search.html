@@ -1,27 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container" data-aos="fade-up">
-  <h1 class="mb-5">Search Results: {{ total }} items</h1>
+<div class="container " data-aos="fade-up">
+  <h2 class="mb-1 pt-5">Search Results: {{ total }} items</h2>
 </div>
 
 
-<!-- ======= Blog Preview Section ======= -->
+<!-- ======= Search Result Section ======= -->
 <section class="single-post-content">
-  <!-- <div class="container" data-aos="fade-up">
-    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th
-        '22</span></div>
-    <h1 class="mb-5">14 Amazing Poems from Shel Silverstein with Valuable Life Lessons</h1>
-    <p><span class="firstcharacter">L</span>orem ipsum dolor sit, amet consectetur adipisicing elit. Ratione
-      officia sed, suscipit distinctio, numquam omnis quo fuga ipsam quis inventore voluptatum recusandae culpa,
-      unde doloribus saepe labore alias voluptate expedita? Dicta delectus beatae explicabo odio voluptatibus
-      quas, saepe qui aperiam autem obcaecati, illo et! Incidunt voluptas culpa neque repellat sint, accusamus
-      beatae, cumque autem tempore quisquam quam eligendi harum debitis.</p>
-  </div> -->
 
   {% for post in posts %}
     {% include '_post.html' %}
   {% endfor %}
+<!-- ======= Search Result Section ======= -->
 
   <!-- ======= Page Navigation Section ======= -->
   {% if total > 1 %}
