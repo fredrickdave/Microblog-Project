@@ -9,9 +9,16 @@
     <h2 class="mb-5">Hi {{ current_user.username }}</h2>
   </div>
 
-  {% for post in posts.items %}
-    {% include '_post.html' %}
-  {% endfor %}
+  {% if posts.items %}
+    {% for post in posts.items %}
+      {% include '_post.html' %}
+    {% endfor %}
+  {% else %}
+    <div class="container" data-aos="fade-up">
+      <p class="fs-3">Sorry, there are no posts to show at the moment as you're not following anyone. 
+        You can go to <a href="{{ url_for('main.explore') }}" class="text-decoration-underline">Explore</a> page and follow someone to see their posts.</p>
+    </div>
+  {% endif %}
 
   <!-- ======= Page Navigation Section ======= -->
   <div class="container mt-5" data-aos="fade-up">
