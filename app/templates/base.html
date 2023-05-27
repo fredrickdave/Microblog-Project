@@ -81,22 +81,21 @@
                 </ul>
             </nav><!-- .navbar -->
             
+            <!-- ======= Search Form ======= -->
             <div class="position-relative">
                 <form action="{{ url_for('main.search') }}" method="get" class="search-form">
-                    <!-- <input type="text" placeholder="Search" class="form-control"> -->
                     {% if g.search_form %}
                     {{ g.search_form.q(size=20, class_="form-control", placeholder=g.search_form.q.label.text) }}
                     {% endif %}
                 </form>
-
                 <a href="#" class="mx-2 js-search-open disabled "><span
                         class="bi-search"></span></a>
             </div>
+            <!-- End Search Form -->
 
             <div class="position-relative">
                 <i class="bi bi-list mobile-nav-toggle"></i>
 
-                <!-- ======= Search Form ======= -->
                 <div class="search-form-wrap js-search-form-wrap">
                     <form action="{{ url_for('main.search') }}" method="get" class="search-form">
                         <span class="icon bi-search"></span>
@@ -105,7 +104,6 @@
                         <button class="btn js-search-close"></button>
                     </form>
                 </div>
-                <!-- End Search Form -->
 
             </div>
 
