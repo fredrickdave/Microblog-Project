@@ -117,6 +117,7 @@ def unfollow(username):
 
 
 @bp.route("/new_post", methods=["GET", "POST"])
+@login_required
 def new_post():
     form = CreatePostForm()
     if form.validate_on_submit():
