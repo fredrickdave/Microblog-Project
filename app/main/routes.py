@@ -43,11 +43,6 @@ def explore():
     return render_template("index.html", title="Explore", posts=posts, route="main.explore")
 
 
-@bp.route("/single-post")
-def get_post():
-    return render_template("single-post.html", title="Single Post")
-
-
 @bp.route("/user/<username>")
 @login_required
 def user(username):
