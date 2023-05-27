@@ -80,14 +80,20 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav><!-- .navbar -->
+            
+            <div class="position-relative">
+                <form action="{{ url_for('main.search') }}" method="get" class="search-form">
+                    <!-- <input type="text" placeholder="Search" class="form-control"> -->
+                    {% if g.search_form %}
+                    {{ g.search_form.q(size=20, class_="form-control", placeholder=g.search_form.q.label.text) }}
+                    {% endif %}
+                </form>
+
+                <a href="#" class="mx-2 js-search-open disabled "><span
+                        class="bi-search"></span></a>
+            </div>
 
             <div class="position-relative">
-                <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
-                <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
-                <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
-
-                <a href="#" class="mx-2 js-search-open {% if not g.search_form %} disabled {% endif %}"><span
-                        class="bi-search"></span></a>
                 <i class="bi bi-list mobile-nav-toggle"></i>
 
                 <!-- ======= Search Form ======= -->
@@ -95,9 +101,7 @@
                     <form action="{{ url_for('main.search') }}" method="get" class="search-form">
                         <span class="icon bi-search"></span>
                         <!-- <input type="text" placeholder="Search" class="form-control"> -->
-                        {% if g.search_form %}
-                        {{ g.search_form.q(size=20, class_="form-control", placeholder=g.search_form.q.label.text) }}
-                        {% endif %}
+          
                         <button class="btn js-search-close"></button>
                     </form>
                 </div>
