@@ -34,8 +34,6 @@ def create_app(config_class=Config):
     app.elasticsearch = (
         Elasticsearch(
             hosts=[app.config["ELASTICSEARCH_URL"]],
-            ca_certs=app.config["ELASTICSEARCH_CERT"],
-            basic_auth=(app.config["ELASTICK_USERNAME"], app.config["ELASTICK_PW"]),
         )
         if app.config["ELASTICSEARCH_URL"]
         else None
