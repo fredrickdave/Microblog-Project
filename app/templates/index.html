@@ -26,8 +26,12 @@
     <div class="container" data-aos="fade-up">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto mt-0">
-          <p class="fs-3">Sorry, there are no posts to show at the moment as you're not following anyone. 
-            You can go to <a href="{{ url_for('main.explore') }}" class="text-decoration-underline">Explore</a> page and follow someone to see their posts.</p>
+          {% if route == "main.index" %}
+            <p class="fs-3 mt-5">Sorry, there are no posts to show at the moment as you're not following anyone. 
+              You can go to <a href="{{ url_for('main.explore') }}" class="text-decoration-underline">Explore</a> page and follow someone to see their posts.</p>
+          {% else %}
+            <p class="fs-3 mt-5">Sorry, there are no posts to show at the moment.</p>
+          {% endif %}
         </div>
       </div>
     </div>
