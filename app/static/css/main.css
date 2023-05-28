@@ -17,20 +17,35 @@
 
 body {
   color: rgba(var(--color-primary-rgb), 1);
+  font-size: 1.1rem;
 }
 
 a {
   color: var(--color-links);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover {
-  color: var(--color-links-hover);
-  text-decoration: none;
+  color:#30A2FF;
+  text-decoration: underline;
 }
 
 a.disabled {
   display: none;
+}
+
+a.black-header {
+  color: #212529;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #979fa5;
+}
+
+a.black-header:visited {
+  color: #212529;
+  text-decoration: none;
 }
 
 h1,
@@ -1377,18 +1392,19 @@ section {
 /*--------------------------------------------------------------
 # New Post floating button
 --------------------------------------------------------------*/
-.float{
-	position:sticky;
-	bottom:12px;
-	right: 5%;
+.float {
+  position: sticky;
+  bottom: 12px;
+  right: 5%;
 
 }
 
 @media (max-width: 768px) {
-  .float{
-    position:sticky;
-    bottom:60px;  }
+  .float {
+    position: sticky;
+    bottom: 60px;
   }
+}
 
 .new-post-btn {
   background-color: white;

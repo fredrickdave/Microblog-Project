@@ -48,7 +48,7 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-            <a href="{{ url_for('main.index') }}" class="logo d-flex align-items-center">
+            <a href="{{ url_for('main.index') }}" class="logo d-flex align-items-center black-header">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="static/img/logo.png" alt=""> -->
                 <h1>Microblog</h1>
@@ -56,28 +56,28 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="{{ url_for('main.index') }}">Home</a></li>
-                    <li><a href="{{ url_for('main.explore') }}">Explore</a></li>
+                    <li><a href="{{ url_for('main.index') }}" class="black-header">Home</a></li>
+                    <li><a href="{{ url_for('main.explore') }}" class="black-header">Explore</a></li>
                     {% if current_user.is_anonymous %}
-                    <li class="dropdown"><a href="{{ url_for('auth.login') }}"><span>Login</span> <i
+                    <li class="dropdown"><a href="{{ url_for('auth.login') }}" class="black-header"><span>Login</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                            <li><a href="{{ url_for('auth.login') }}" class="black-header">Login</a></li>
+                            <li><a href="{{ url_for('auth.register') }}" class="black-header">Register</a></li>
                         </ul>
                     </li>
                     {% else %}
                     <li class="dropdown"><a
-                            href="{{ url_for('main.user', username=current_user.username) }}"><span>Profile</span> <i
+                            href="{{ url_for('main.user', username=current_user.username) }}" class="black-header"><span>Profile</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="{{ url_for('main.user', username=current_user.username) }}">Profile</a></li>
-                            <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                            <li><a href="{{ url_for('main.user', username=current_user.username) }}" class="black-header">Profile</a></li>
+                            <li><a href="{{ url_for('auth.logout') }}" class="black-header">Logout</a></li>
                         </ul>
                     </li>
                     {% endif %}
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html" class="black-header">About</a></li>
+                    <li><a href="contact.html" class="black-header">Contact</a></li>
                 </ul>
             </nav><!-- .navbar -->
             
@@ -142,17 +142,17 @@
                     <div class="col-6 col-lg-4">
                         <h3 class="footer-heading">Navigation</h3>
                         <ul class="footer-links list-unstyled">
-                            <li><a href="{{ url_for('main.index') }}"><i class="bi bi-chevron-right"></i> Home</a></li>
-                            <li><a href="{{ url_for('main.explore') }}"><i class="bi bi-chevron-right"></i> Explore</a></li>
+                            <li><a href="{{ url_for('main.index') }}" class="black-header"><i class="bi bi-chevron-right"></i> Home</a></li>
+                            <li><a href="{{ url_for('main.explore') }}" class="black-header"><i class="bi bi-chevron-right"></i> Explore</a></li>
                             {% if current_user.is_anonymous %}
-                                <li><a href="{{ url_for('auth.login') }}"><i class="bi bi-chevron-right"></i> Login</a></li>
-                                <li><a href="{{ url_for('auth.register') }}"><i class="bi bi-chevron-right"></i> Register</a></li>
+                                <li><a href="{{ url_for('auth.login') }}" class="black-header"><i class="bi bi-chevron-right"></i> Login</a></li>
+                                <li><a href="{{ url_for('auth.register') }}" class="black-header"><i class="bi bi-chevron-right"></i> Register</a></li>
                             {% else %}
-                                <li><a href="{{ url_for('main.user', username=current_user.username) }}"><i class="bi bi-chevron-right"></i> Profile</a></li>
-                                <li><a href="{{ url_for('auth.logout') }}"><i class="bi bi-chevron-right"></i> Logout</a></li>
+                                <li><a href="{{ url_for('main.user', username=current_user.username) }}" class="black-header"><i class="bi bi-chevron-right"></i> Profile</a></li>
+                                <li><a href="{{ url_for('auth.logout') }}" class="black-header"><i class="bi bi-chevron-right"></i> Logout</a></li>
                             {% endif %} 
-                            <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
-                            <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
+                            <li><a href="about.html" class="black-header"><i class="bi bi-chevron-right"></i> About us</a></li>
+                            <li><a href="contact.html" class="black-header"><i class="bi bi-chevron-right"></i> Contact</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-4">
@@ -165,7 +165,7 @@
                                 <!-- You can delete the links only if you purchased the pro version. -->
                                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-                                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                                Designed by <a href="https://bootstrapmade.com/" class="black-header">BootstrapMade</a>
                             </div>
                         </ul>
                     </div>
