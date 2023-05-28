@@ -76,7 +76,7 @@
                         </ul>
                     </li>
                     {% endif %}
-                    <li><a href="about.html" class="black-header">About</a></li>
+                    <li><a href="{{ url_for('main.about') }}" class="black-header">About</a></li>
                     <li><a href="contact.html" class="black-header">Contact</a></li>
                 </ul>
             </nav><!-- .navbar -->
@@ -137,7 +137,7 @@
                         <h3 class="footer-heading">About Microblog</h3>
                         <p> Microblog website is a platform for sharing short-form content, connecting
                             with like-minded individuals and sharing your thoughts with your audience.</p>
-                        <p><a href="about.html" class="footer-link-more">Learn More</a></p>
+                        <p><a href="{{ url_for('main.about') }}" class="footer-link-more">Learn More</a></p>
                     </div>
                     <div class="col-6 col-lg-4">
                         <h3 class="footer-heading">Navigation</h3>
@@ -151,7 +151,7 @@
                                 <li><a href="{{ url_for('main.user', username=current_user.username) }}" class="black-header"><i class="bi bi-chevron-right"></i> Profile</a></li>
                                 <li><a href="{{ url_for('auth.logout') }}" class="black-header"><i class="bi bi-chevron-right"></i> Logout</a></li>
                             {% endif %} 
-                            <li><a href="about.html" class="black-header"><i class="bi bi-chevron-right"></i> About us</a></li>
+                            <li><a href="{{ url_for('main.about') }}" class="black-header"><i class="bi bi-chevron-right"></i> About us</a></li>
                             <li><a href="contact.html" class="black-header"><i class="bi bi-chevron-right"></i> Contact</a></li>
                         </ul>
                     </div>

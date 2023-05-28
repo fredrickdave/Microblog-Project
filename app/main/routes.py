@@ -52,7 +52,9 @@ def user(username):
         page=page, per_page=current_app.config["POSTS_PER_PAGE"], error_out=False
     )
     form = EmptyForm()
-    return render_template("user.html", title=f"Profile: {user.username}", user=user, posts=posts, form=form, route="main.user")
+    return render_template(
+        "user.html", title=f"Profile: {user.username}", user=user, posts=posts, form=form, route="main.user"
+    )
 
 
 @bp.route("/edit_profile", methods=["GET", "POST"])
@@ -170,3 +172,9 @@ def search():
     page = request.args.get("page", 1, type=int)
     posts, total = Post.search(g.search_form.q.data, page)
     return render_template("search.html", title="Search", route="main.search", posts=posts, total=total)
+
+
+@bp.route("/about")
+@login_required
+def about():
+    return render_template("about.html", title="About Microblog")
