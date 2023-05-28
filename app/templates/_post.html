@@ -1,27 +1,31 @@
 <div class="container" data-aos="fade-up">
-    <table>
-      <tr valign="top">
-        <td class="post-td"><img src="{{ post.author.avatar(50) }}" class="rounded"></td>
-        <td>
-            <div class="post-meta ps-1 pt-3">
-                <span class="date">Posted by: <a href="{{ url_for('main.user', username=post.author.username) }}" class="black-header">{{post.author.username }}</a></span> 
-                <span class="mx-1">&bullet;</span> 
-                <span>{{moment(post.timestamp).fromNow() }}</span> <br>
-                {% if current_user.id == post.user_id %}
-                    <a href="{{ url_for('main.edit_post', post_id=post.id) }}" class="black-header">Edit</a>
-                    <span class="ms-1">|</span>
-                    <span class="ms-1"><a href="{{ url_for('main.delete_post', post_id = post.id) }}" class="black-header">Delete</a></span>
-                {% endif %}
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <h2 class="mb-3 post-title pt-3"><a href="{{ url_for('main.show_post', post_id=post.id) }}" class="black-header">{{ post.title }}</a></h2>
-            <h3 class="post-subtitle">{{ post.subtitle }}</h3>
-            <p class="post-body">{{ post.body|truncate(500, false)|safe }} <a href="{{ url_for('main.show_post', post_id=post.id) }}" class="post-more">Read more</a></p>
-        </td>
-      </tr>
-    </table>
-    <hr>
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto mt-3">
+            <table>
+            <tr valign="top">
+                <td class="post-td"><img src="{{ post.author.avatar(50) }}" class="rounded"></td>
+                <td>
+                    <div class="post-meta ps-1 pt-3">
+                        <span class="date">Posted by: <a href="{{ url_for('main.user', username=post.author.username) }}" class="black-header">{{post.author.username }}</a></span> 
+                        <span class="mx-1">&bullet;</span> 
+                        <span>{{moment(post.timestamp).fromNow() }}</span> <br>
+                        {% if current_user.id == post.user_id %}
+                            <a href="{{ url_for('main.edit_post', post_id=post.id) }}" class="black-header">Edit</a>
+                            <span class="ms-1">|</span>
+                            <span class="ms-1"><a href="{{ url_for('main.delete_post', post_id = post.id) }}" class="black-header">Delete</a></span>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <h2 class="mb-3 post-title pt-3"><a href="{{ url_for('main.show_post', post_id=post.id) }}" class="black-header">{{ post.title }}</a></h2>
+                    <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+                    <p class="post-body">{{ post.body|truncate(500, false)|safe }} <a href="{{ url_for('main.show_post', post_id=post.id) }}" class="post-more">Read more</a></p>
+                </td>
+            </tr>
+            </table>
+            <hr>
+        </div>
+    </div>
 </div>

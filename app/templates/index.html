@@ -5,15 +5,18 @@
 <!-- ======= Blog Preview Section ======= -->
 <section class="single-post-content">
 
-  {% if route == "main.index" %}
-    <div class="container" data-aos="fade-up">
-      <h2 class="mb-5">Hi {{ current_user.username }}! {% if posts.items %} Here are the posts from users you follow.{% endif %}</h2>
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto mt-0">
+        {% if route == "main.index" %}
+          <h2 class="mb-2">Hi {{ current_user.username }}! {% if posts.items %} Here are the posts from users you follow.{% endif %}</h2>
+        {% else %}
+          <h2 class="mb-2">Hi {{ current_user.username }}! Discover new posts and users to follow here.</h2>
+        {% endif %}
+      </div>
     </div>
-  {% else %}
-    <div class="container" data-aos="fade-up">
-      <h2 class="mb-5">Hi {{ current_user.username }}! Discover new posts and users to follow here.</h2>
-    </div>
- {% endif %}
+  </div>
+
 
   {% if posts.items %}
     {% for post in posts.items %}
@@ -50,9 +53,13 @@
 
 <!-- New Post -->
 <div class="container mt-5 float" data-aos="fade-up">
-  <ul class="aside-tags list-unstyled">
-    <li><a href="{{ url_for('main.new_post') }}" class="new-post-btn rounded float black-header">New Post</a></li>
-  </ul>
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto mt-0">
+      <ul class="aside-tags list-unstyled">
+        <li><a href="{{ url_for('main.new_post') }}" class="new-post-btn rounded float black-header">New Post</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
 <!-- End Blog Preview Content -->
 
