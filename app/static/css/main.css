@@ -39,9 +39,6 @@ a.black-header {
   text-decoration: none;
 }
 
-a:visited {
-  color: #979fa5;
-}
 
 a.black-header:visited {
   color: #212529;
