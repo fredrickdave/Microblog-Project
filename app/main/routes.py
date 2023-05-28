@@ -52,7 +52,7 @@ def user(username):
         page=page, per_page=current_app.config["POSTS_PER_PAGE"], error_out=False
     )
     form = EmptyForm()
-    return render_template("user.html", title="Profile", user=user, posts=posts, form=form, route="main.user")
+    return render_template("user.html", title=f"Profile: {user.username}", user=user, posts=posts, form=form, route="main.user")
 
 
 @bp.route("/edit_profile", methods=["GET", "POST"])
@@ -127,8 +127,8 @@ def new_post():
 @bp.route("/post/<int:post_id>", methods=["GET", "POST"])
 @login_required
 def show_post(post_id):
-    requested_post = Post.query.get(post_id)
-    return render_template("single_post.html", post=requested_post)
+    post = Post.query.get(post_id)
+    return render_template("single_post.html", post=post, title=post.title)
 
 
 @bp.route("/edit_post/<int:post_id>", methods=["GET", "POST"])
