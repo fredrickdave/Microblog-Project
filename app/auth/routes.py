@@ -26,7 +26,7 @@ def login():
             next_page = url_for("main.index")
         return redirect(next_page)
 
-    return render_template("auth/login.html", form=form, title="Loginx")
+    return render_template("auth/login.html", form=form, title="Login")
 
 
 @bp.route("/logout")
