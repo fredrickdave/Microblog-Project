@@ -75,7 +75,8 @@ def reset_password(token):
         return redirect(url_for("main.index"))
     user = User.verify_reset_password_token(token)
     if not user:
-        return redirect(url_for("main.index"))
+        flash("Password reset link has expired. Please submit a new request for password reset.")
+        return redirect(url_for("auth.login"))
     form = ResetPasswordForm()
     if form.validate_on_submit():
         user.set_password(form.password.data)
