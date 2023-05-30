@@ -29,7 +29,3 @@ To run this project locally, you need to have Python 3.6 or higher and pip insta
 7. Initialize the database: `flask db upgrade`
 8. Run the application: `flask run`
 9. Open your browser and go to http://localhost:5000
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
