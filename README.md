@@ -29,3 +29,8 @@ To run this project locally, you need to have Python 3.6 or higher and pip insta
 7. Initialize the database: `flask db upgrade`
 8. Run the application: `flask run`
 9. Open your browser and go to http://localhost:5000
+
+## Live Demo Link
+The app is hosted on a free instance on Render, so please allow a minute or two for the web app to initially load when you open the Live Demo link. 
+
+Link: https://microblog-app-z6vu.onrender.com/
