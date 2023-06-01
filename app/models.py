@@ -3,6 +3,7 @@ from hashlib import md5
 from time import time
 
 import jwt
+from elasticsearch.exceptions import ConnectionError
 from flask import current_app
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -33,16 +34,21 @@ class SearchableMixin:
 
     @classmethod
     def after_commit(cls, session):
-        for obj in session._changes["add"]:
-            if isinstance(obj, SearchableMixin):
-                add_to_index(obj.__tablename__, obj)
-        for obj in session._changes["update"]:
-            if isinstance(obj, SearchableMixin):
-                add_to_index(obj.__tablename__, obj)
-        for obj in session._changes["delete"]:
-            if isinstance(obj, SearchableMixin):
-                remove_from_index(obj.__tablename__, obj)
-        session._changes = None
+        try:
+            for obj in session._changes["add"]:
+                if isinstance(obj, SearchableMixin):
+                    add_to_index(obj.__tablename__, obj)
+            for obj in session._changes["update"]:
+                if isinstance(obj, SearchableMixin):
+                    add_to_index(obj.__tablename__, obj)
+            for obj in session._changes["delete"]:
+                if isinstance(obj, SearchableMixin):
+                    remove_from_index(obj.__tablename__, obj)
+            session._changes = None
+        except ConnectionError:
+            print(
+                "Failed to establish a connection to Elasticsearch. Please make sure Elasticsearch service is running."
+            )
 
     @classmethod
     def reindex(cls):
