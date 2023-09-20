@@ -4,6 +4,7 @@
 ### Others ###
 app.db
 add.py
+playground.py
 
 ### Flask ###
 instance/*
